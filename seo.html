@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+	<!-- 
+	Autor: Jakub Svoboda
+	login: xsvobo0z
+	pozn: 	Verze nahraná na webu je uložená na serveru Eva (kliknutí na logo nebo http://www.stud.fit.vutbr.cz/~xsvobo0z/proj2/proj2/index.html) 
+			a bylo tedy nutné stránky pro správné zobrazení uložit ve východoevropském kodování a HTML 
+			validátor tedy vypíše warning. Verze pro odevzdání je kodovaná v UTF-8.		
+			Dále bych chtěl upozornit, že Google Chrome v základním nastavení nedovoluje ukládání cookies
+			pro stránky uložené na lokálním počítači, proto v Chromu v offline verzi nefunguje zobrazení
+			prvků podle cookie. 
+	-->
+	<meta charset="UTF-8">
+	<title>SEO - Prudký Svah</title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript">
+		$(document).ready(function(){
+			$(".c1").css({			//hide background on load. Default is for cases when javascript doesnt work.
+				'background-color' : "rgba(60,60,60,0.0)"	});
+			$(".c2").css({
+				'background-color' : "rgba(60,60,60,0.0)"	});
+			$(".c3").css({
+				'background-color' : "rgba(60,60,60,0.0)"	});
+			$(".c4").css({
+				'background-color' : "rgba(60,60,60,0.0)"	});
+		
+			$('.c1 a').hide(); 		//hide dropdown menu on page load
+			$('.c2 a').hide(); 
+			$('.c3 a').hide(); 
+			$('.c4 a').hide(); 
+					
+			$('.hlavni').mouseover(function () {  					//Efekty pro mouseover menu
+				$('.c1 a').show(); 
+				$(".c1").css({
+					'background-color' : "rgba(60,60,60,0.7)"	});		 
+				$('.c2 a').hide(); 
+				$(".c2").css({
+					'background-color' : "rgba(60,60,60,00)"	});		 
+				$('.c3 a').hide(); 
+				$(".c3").css({
+					'background-color' : "rgba(60,60,60,00)"	});	
+				$('.c4 a').hide(); 
+				$(".c4").css({
+					'background-color' : "rgba(60,60,60,00)"	});	
+			});	
+			$('.info').mouseover(function () {  
+				$('.c1 a').hide(); 
+				$(".c1").css({
+					'background-color' : "rgba(60,60,60,0)"		});		 
+				$('.c2 a').show(); 
+				$(".c2").css({
+					'background-color' : "rgba(60,60,60,0.7)"	});		 
+				$('.c3 a').hide(); 
+				$(".c3").css({
+					'background-color' : "rgba(60,60,60,00)"	});	
+				$('.c4 a').hide(); 
+				$(".c4").css({
+					'background-color' : "rgba(60,60,60,00)"	});					
+			});	
+			
+			$('.sluzby').mouseover(function () {  
+				$('.c1 a').hide(); 
+				$(".c1").css({
+					'background-color' : "rgba(60,60,60,0)"		});		 
+				$('.c2 a').hide(); 
+				$(".c2").css({
+					'background-color' : "rgba(60,60,60,0)"	});		 
+				$('.c3 a').show(); 
+				$(".c3").css({
+					'background-color' : "rgba(60,60,60,0.7)"	});	
+				$('.c4 a').hide(); 
+				$(".c4").css({
+					'background-color' : "rgba(60,60,60,00)"	});						
+			});	
+			
+			$('.kontakt').mouseover(function () {  
+				$('.c1 a').hide(); 
+				$(".c1").css({
+					'background-color' : "rgba(60,60,60,0)"		});		 
+				$('.c2 a').hide(); 
+				$(".c2").css({
+					'background-color' : "rgba(60,60,60,0)"	});		 
+				$('.c3 a').hide(); 
+				$(".c3").css({
+					'background-color' : "rgba(60,60,60,00)"	});	
+				$('.c4 a').show(); 
+				$(".c4").css({
+					'background-color' : "rgba(60,60,60,0.7)"	});					
+			});	
+			
+			
+			$('#center').mouseover(function () {  						//hide dropdown menu 
+				$('.c1 a').hide(); 
+				$(".c1").css({
+					'background-color' : "rgba(60,60,60,0)"		});		 
+				$('.c2 a').hide(); 
+				$(".c2").css({
+					'background-color' : "rgba(60,60,60,00)"	});		 
+				$('.c3 a').hide(); 
+				$(".c3").css({
+					'background-color' : "rgba(60,60,60,00)"	});	
+				$('.c4 a').hide(); 
+				$(".c4").css({
+					'background-color' : "rgba(60,60,60,00)"	});	   
+			});	
+			
+		});
+    </script>
+	<meta name="author" content="Jakub Svoboda">
+	<meta name="keywords" content="Ski, Lyže, areál, alpy, alps, snow">
+	<meta name="description" content="Ski areál Prudký Svah">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="icon" href="images/icon.png">
+</head>
+<body>
+<div id="page">
+
+<header id="header">
+	<div id="topbar">
+	</div>
+	<div class="inner">
+			<table>
+				<tr  id="topmenu">
+					<td class="hlavni"><a href="index.html">HLAVNÍ STRANA</a></td>
+					<td class="info"><a>INFORMACE</a></td>
+					<td class="sluzby"><a>SLUŽBY</a></td>
+					<td class="kontakt"><a>KONTAKTY</a></td>
+					<td id="social"> 
+						<a href="http://www.facebook.com">
+						<img alt="Facebook" src="images/facebook.png" >
+						</a>
+						<a href="http://www.twitter.com">
+						<img alt="Twitter" src="images/twitter.png" >
+						</a>
+						<a href="http://www.instagram.com">
+						<img alt="instagram" src="images/instagram.png" >
+						</a>
+					</td>
+				</tr>	
+				<tr id="dropdown">
+					<td class="c1 hlavni" ><a href="index.html#prehled"><div class="button">Přehled</div></a></td>
+					<td class="c2 info" ><a href="oarealu.html"><div class="button">O areálu</div></a></td>
+					<td class="c3 sluzby"><a href="vleky.html"><div class="button">Vleky</div></a></td>
+					<td class="c4 kontakt" ><a href="arealy.html"><div class="button">Areály</div></a></td>
+					<td></td>
+				</tr>
+				<tr id="dropdown2">
+					<td class="c1 hlavni" ><a href="index.html#novinky"><div class="button">Novinky</div></a></td>
+					<td class="c2 info" ><a href="mapa.html"><div class="button">Mapa</div></a></td>
+					<td class="c3 sluzby" ><a href="hotely.html"><div class="button">Hotely</div></a></td>
+					<td class="c4 kontakt" ><a href="objednavky.html"><div class="button">Objednávky</div></a></td>
+					<td></td>
+				</tr>
+			</table>
+			
+	</div>
+</header>
+	
+<div id="center">
+	<section id="main">
+	
+		<div id="pretext">
+			<a href="http://www.stud.fit.vutbr.cz/~xsvobo0z/proj2/proj2/index.html">
+			<img id="logo" src="images/logo.png" alt="logo">
+			</a>
+		</div>
+		<div id="grad">
+		</div>
+		<div class="inner">
+			<div id="contentwrap">
+				<h1> On-page a off-page SEO: </h1>
+						<br>
+						<ul class="mapas">
+							<li>Hlavička stránky obsahuje klíčová slova pro vyhledávání.</li>
+							<li>Orientace na webu je možná i bez javascriptu a je tak dostupná pro web-crawler, který se přes javascript nedostane.</li>	
+							<li>Na stránku vedou zpětné odkazy ze stránek spolužáků.</li>		
+							<li>URL odpovídá obsahu dané stránky.</li>
+							<li>Stránka správně využívá nadpisů h1 až h4.</li>	
+							<li>Dokumenty v rámci stránek jsou dostatečne prolinkovány, hloubka zanoření ve struktuře webu je spíše nižší.</li>
+							<li>Stránka je syntakticky bez chyb, bot ji lehce přečte.</li>
+							<li>Rozumný poměr textu ke kodu stránek.</li>
+						</ul>
+			</div>			
+	</div>
+
+	
+</section>
+</div>	
+
+
+
+
+
+
+<footer id="footer">
+		
+		<div id="map">
+			<a href="seo.html">SEO</a>
+			<a href="mapastranek.html">Mapa stránek</a>
+		</div>
+		<div id="copy">Copyright © 2016 - Ski areál Prudký Svah. All rights reserved.</div>
+
+</footer>
+</div>
+
+</body>
+</html>

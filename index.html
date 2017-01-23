@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+	<!-- 
+	Autor: Jakub Svoboda
+	login: xsvobo0z
+	pozn: 	Verze nahraná na webu je uložená na serveru Eva (kliknutí na logo nebo http://www.stud.fit.vutbr.cz/~xsvobo0z/proj2/proj2/index.html) 
+			a bylo tedy nutné stránky pro správné zobrazení uložit ve východoevropském kodování a HTML 
+			validátor tedy vypíše warning. Verze pro odevzdání je kodovaná v UTF-8.		
+			Dále bych chtěl upozornit, že Google Chrome v základním nastavení nedovoluje ukládání cookies
+			pro stránky uložené na lokálním počítači, proto v Chromu v offline verzi nefunguje zobrazení
+			prvků podle cookie. 
+	-->
+	<meta charset="UTF-8">
+	<title>Ski areál Prudký Svah</title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript">
+		function createCookie(name,value,days) {
+			if (days) {
+				var date = new Date();
+				date.setTime(date.getTime()+(days*24*60*60*1000));
+				var expires = "; expires="+date.toGMTString();
+			}
+			else var expires = "";
+			document.cookie = name+"="+value+expires+"; path=/";
+		}
+
+		function readCookie(name) {
+			var nameEQ = name + "=";
+			var ca = document.cookie.split(';');
+			for(var i=0;i < ca.length;i++) {
+				var c = ca[i];
+				while (c.charAt(0)==' ') c = c.substring(1,c.length);
+				if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+			}
+			return null;
+		}
+
+		function eraseCookie(name) {
+			createCookie(name,"",-1);
+		}
+		
+		$(document).ready(function(){
+		
+			$(".c1").css({			//hide background on load. Default is for cases when javascript doesnt work.
+				'background-color' : "rgba(60,60,60,0.0)"	});
+			$(".c2").css({
+				'background-color' : "rgba(60,60,60,0.0)"	});
+			$(".c3").css({
+				'background-color' : "rgba(60,60,60,0.0)"	});
+			$(".c4").css({
+				'background-color' : "rgba(60,60,60,0.0)"	});
+			
+			$('#hideimg').hide();	// hide img through javascript
+			$('.c1 a').hide(); 		//hide dropdown menu on page load
+			$('.c2 a').hide(); 
+			$('.c3 a').hide(); 
+			$('.c4 a').hide(); 
+			
+			var x = readCookie("xsvobo0z");
+			if (x==1){
+				$('#hideimg').show();
+			}else{
+				if(x==0){
+					$('#hideimg').hide();}
+					else{
+						createCookie("xsvobo0z","0");
+					}
+				
+			}
+			
+			var count = 0;
+		
+			$( "#jquery_map_button" ).click(function() {
+				count=count+1;
+				
+				if(count > 1){count =0};
+				if (count==1){
+					$('#hideimg').show();
+					createCookie("xsvobo0z","1");
+				}else{
+					$('#hideimg').hide();
+					createCookie("xsvobo0z","0");
+				}
+			});
+					
+			$('.hlavni').mouseover(function () {  					//Efekty pro mouseover menu
+				$('.c1 a').show(); 
+				$(".c1").css({
+					'background-color' : "rgba(60,60,60,0.7)"	});		 
+				$('.c2 a').hide(); 
+				$(".c2").css({
+					'background-color' : "rgba(60,60,60,00)"	});		 
+				$('.c3 a').hide(); 
+				$(".c3").css({
+					'background-color' : "rgba(60,60,60,00)"	});	
+				$('.c4 a').hide(); 
+				$(".c4").css({
+					'background-color' : "rgba(60,60,60,00)"	});	
+			});	
+			$('.info').mouseover(function () {  
+				$('.c1 a').hide(); 
+				$(".c1").css({
+					'background-color' : "rgba(60,60,60,0)"		});		 
+				$('.c2 a').show(); 
+				$(".c2").css({
+					'background-color' : "rgba(60,60,60,0.7)"	});		 
+				$('.c3 a').hide(); 
+				$(".c3").css({
+					'background-color' : "rgba(60,60,60,00)"	});	
+				$('.c4 a').hide(); 
+				$(".c4").css({
+					'background-color' : "rgba(60,60,60,00)"	});					
+			});	
+			
+			$('.sluzby').mouseover(function () {  
+				$('.c1 a').hide(); 
+				$(".c1").css({
+					'background-color' : "rgba(60,60,60,0)"		});		 
+				$('.c2 a').hide(); 
+				$(".c2").css({
+					'background-color' : "rgba(60,60,60,0)"	});		 
+				$('.c3 a').show(); 
+				$(".c3").css({
+					'background-color' : "rgba(60,60,60,0.7)"	});	
+				$('.c4 a').hide(); 
+				$(".c4").css({
+					'background-color' : "rgba(60,60,60,00)"	});						
+			});	
+			
+			$('.kontakt').mouseover(function () {  
+				$('.c1 a').hide(); 
+				$(".c1").css({
+					'background-color' : "rgba(60,60,60,0)"		});		 
+				$('.c2 a').hide(); 
+				$(".c2").css({
+					'background-color' : "rgba(60,60,60,0)"	});		 
+				$('.c3 a').hide(); 
+				$(".c3").css({
+					'background-color' : "rgba(60,60,60,00)"	});	
+				$('.c4 a').show(); 
+				$(".c4").css({
+					'background-color' : "rgba(60,60,60,0.7)"	});					
+			});	
+			
+			
+			$('#center').mouseover(function () {  						//hide dropdown menu 
+				$('.c1 a').hide(); 
+				$(".c1").css({
+					'background-color' : "rgba(60,60,60,0)"		});		 
+				$('.c2 a').hide(); 
+				$(".c2").css({
+					'background-color' : "rgba(60,60,60,00)"	});		 
+				$('.c3 a').hide(); 
+				$(".c3").css({
+					'background-color' : "rgba(60,60,60,00)"	});	
+				$('.c4 a').hide(); 
+				$(".c4").css({
+					'background-color' : "rgba(60,60,60,00)"	});	   
+			});	
+			
+		});
+    </script>
+	<meta name="author" content="Jakub Svoboda">
+	<meta name="keywords" content="Ski, Lyže, areál, alpy, alps, snow">
+	<meta name="description" content="Ski areál Prudký Svah"> 
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="icon" href="images/icon.png">
+</head>
+<body>
+<div id="page">
+
+<header id="header">
+	<div id="topbar">
+	</div>
+	<div class="inner">
+			<table>
+				<tr  id="topmenu">
+					<td class="hlavni"><a href="index.html">HLAVNÍ STRANA</a></td>
+					<td class="info"><a>INFORMACE</a></td>
+					<td class="sluzby"><a>SLUŽBY</a></td>
+					<td class="kontakt"><a>KONTAKTY</a></td>
+					<td id="social"> 
+						<a href="http://www.facebook.com">
+						<img alt="Facebook" src="images/facebook.png" >
+						</a>
+						<a href="http://www.twitter.com">
+						<img alt="Twitter" src="images/twitter.png" >
+						</a>
+						<a href="http://www.instagram.com">
+						<img alt="instagram" src="images/instagram.png" >
+						</a>
+					</td>
+				</tr>	
+				<tr id="dropdown">
+					<td class="c1 hlavni" ><a href="index.html#prehled"><div class="button">Přehled</div></a></td>
+					<td class="c2 info" ><a href="oarealu.html"><div class="button">O areálu</div></a></td>
+					<td class="c3 sluzby"><a href="vleky.html"><div class="button">Vleky</div></a></td>
+					<td class="c4 kontakt" ><a href="arealy.html"><div class="button">Areály</div></a></td>
+					<td></td>
+				</tr>
+				<tr id="dropdown2">
+					<td class="c1 hlavni" ><a href="index.html#novinky"><div class="button">Novinky</div></a></td>
+					<td class="c2 info" ><a href="mapa.html"><div class="button">Mapa</div></a></td>
+					<td class="c3 sluzby" ><a href="hotely.html"><div class="button">Hotely</div></a></td>
+					<td class="c4 kontakt" ><a href="objednavky.html"><div class="button">Objednávky</div></a></td>
+					<td></td>
+				</tr>
+			</table>
+			
+	</div>
+</header>
+	
+<div id="center">
+	<section id="main">
+	
+		<div id="pretext">
+			<a href="http://www.stud.fit.vutbr.cz/~xsvobo0z/proj2/proj2/index.html">
+			<img id="logo" src="images/logo.png" alt="logo">
+			</a>
+		</div>
+		<div id="grad">
+		</div>
+		<div class="inner">
+		<h1>Ski areál - Prudký Svah</h1>
+		<a id="prehled"></a> 
+		<h2>Přehled</h2>
+		<p>Aenean hendrerit ornare lectus at tempus. Sed vel ligula quis nunc ultrices finibus nec et libero. Cras tempus cursus eros, ut blandit diam mattis eget. Suspendisse sollicitudin consectetur libero ut interdum. Mauris et elementum erat, vitae iaculis nunc. Nulla id dui id elit dictum cursus vel eget eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas suscipit erat leo. Nullam suscipit posuere dignissim. In finibus, metus nec finibus mollis, libero urna porttitor risus, nec vestibulum enim elit tristique urna. Praesent accumsan metus ut cursus facilisis. Nunc ullamcorper turpis tellus, ac ultricies nunc pharetra eget. Suspendisse facilisis ultricies pretium. Curabitur at justo blandit, condimentum risus vitae, interdum sapien. Quisque varius dui a libero semper, blandit blandit quam congue. Vestibulum id lobortis tortor. Donec condimentum sagittis velit, eget ullamcorper sapien tincidunt at. Etiam eu lorem molestie urna posuere pellentesque at eget eros. Etiam ut lorem et tellus porta vehicula ac in ipsum. Suspendisse potenti.</p> 
+		<p>Sed viverra elit non maximus fringilla. Curabitur ut placerat est. Morbi et est nulla. Suspendisse laoreet eu libero eget finibus. Vestibulum et nisi sollicitudin, volutpat lacus id, vulputate lorem. Nam maximus tincidunt diam, vel faucibus ligula convallis eget. Ut varius lorem justo, vitae suscipit ligula tempus a. Aenean sit amet quam a dolor bibendum fermentum. Aenean quis velit ac nisl lacinia viverra. Donec a condimentum nibh. Ut bibendum tortor in mi laoreet rutrum. Cras sed dolor et sem congue iaculis eu id metus. Sed nisl neque, pulvinar sit amet rhoncus id, interdum at dolor. Phasellus vel lectus fringilla, mollis purus sed, sollicitudin massa. Etiam scelerisque mauris consequat mauris pellentesque, eu rutrum lectus vestibulum. Pellentesque lorem ante, commodo at lobortis id, convallis id ex. Integer eu finibus purus, ac posuere ante. Vivamus sed libero ut justo pharetra iaculis. Cras sed sem euismod, aliquam purus quis, porta sem. Sed non sodales augue, feugiat pretium felis.</p>
+		<a id="novinky"></a> 
+		<h2>Novinky</h2>
+				<div class="collumn">
+					<div class="box">
+					<h3>Nové vleky</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur rutrum lobortis nisl, nec fermentum purus iaculis non. Nullam at semper erat. Donec quis pretium sem. Donec feugiat ullamcorper massa vitae molestie. Etiam sit amet purus at libero dictum faucibus rutrum nec orci. Quisque semper arcu enim. Vivamus rutrum scelerisque erat in pulvinar. Maecenas non auctor enim. Cras risus turpis, mollis quis mi sed, aliquet dignissim dui. Cras id tempus tortor. Donec sit amet sapien est. Aenean sem enim, fermentum fringilla dolor at, elementum finibus ante. Etiam dictum tellus at faucibus eleifend. Mauris consectetur risus vel neque viverra, ac ullamcorper nunc maximus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+					</div>
+					<div class="box">
+					<h3>Sezónní skipas 2016/17</h3>
+					<p>
+					Nulla sed nisl id erat feugiat imperdiet. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean fringilla, ante sed accumsan semper, dui ante lacinia sapien, non malesuada velit elit id nunc. Donec neque lectus, tincidunt ac ipsum eget, interdum varius lacus. Nunc eget efficitur metus, nec iaculis quam. Ut feugiat faucibus tempor. Praesent mattis neque urna, et tincidunt justo consequat ac. Nulla ac mauris sit amet dui accumsan faucibus. Donec semper auctor arcu, quis elementum purus volutpat sit amet.
+					</p>
+					</div>
+				</div>
+			<div class="collumn">
+				<div class="box">
+					<h3>Zaručeně nejprudší svah</h3>
+					<p>
+					 In lectus mi, molestie non dolor ut, commodo sagittis leo. Ut nisi ligula, facilisis sed libero et, feugiat efficitur tortor. Curabitur ullamcorper sem a quam gravida consectetur. Donec sed iaculis lorem. Fusce sed commodo est. In hac habitasse platea dictumst. Suspendisse malesuada, erat vel aliquam rutrum, nisi turpis feugiat arcu, sit amet tempus mauris lectus vitae dui. Praesent sit amet dolor eget purus vulputate iaculis vitae nec massa. Morbi at tincidunt enim. 
+					</p>
+				</div>
+				<div class="box">
+					<h3>Sjezdovka roku 2016</h3>
+					<p>
+					Nam tempus sodales augue, vitae consectetur dolor accumsan at. Vestibulum euismod odio eget congue accumsan. Sed nisl neque, auctor non imperdiet non, consectetur non diam. Suspendisse nibh diam, semper pharetra fringilla ut, aliquet quis risus. Ut ultrices ante sit amet lacus viverra convallis. Quisque non sapien vitae enim lacinia luctus. Integer ultricies, diam nec condimentum tincidunt, justo dui facilisis metus, eget fermentum neque justo vel erat. Cras vulputate dictum commodo. Aliquam ac ultrices metus. Sed sollicitudin porta diam. Nulla viverra, ex non finibus aliquam, quam ipsum feugiat ligula, eu placerat ex mauris at nulla. Aenean varius risus eget lobortis tincidunt. Aenean sit amet consectetur nibh. Vestibulum eleifend, augue id hendrerit sollicitudin, libero lectus congue nulla, sed lobortis dolor orci sit amet tellus. Nulla fermentum convallis fringilla.
+					</p>
+				</div>
+			
+		
+			</div>
+			<div class="collumn">
+				<div class="box">
+					<h3>Nově otevřená lyžařská škola</h3>
+					<p>
+					Quisque mattis ut est eget laoreet. Aliquam porta condimentum ligula, ac tempus leo dictum non. Etiam fermentum purus vel ultricies interdum. Ut vel pellentesque urna. Sed consectetur tristique aliquet. Duis eget ligula orci. Mauris facilisis nulla quis lorem auctor tincidunt eget nec nunc. Nam nec nibh suscipit, vestibulum augue lacinia, feugiat sem. Nunc vitae elit semper ipsum imperdiet tincidunt nec eu ex. Nullam in venenatis mi. Curabitur volutpat id arcu eu elementum. Nunc quam augue, pretium vel cursus sit amet, vulputate et risus. Nam a luctus leo, a pretium enim.
+					</p>
+				</div>
+				<div class="box">
+					<h3>Ski areál Prudký Svah je nyní na facebooku</h3>
+					<p>
+					Suspendisse pellentesque dui nec tortor posuere, nec feugiat neque aliquet.Suspendisse pellentesque dui nec tortor posuere, nec feugiat neque aliquet. Ut auctor sagittis est vitae aliquam. Ut auctor sagittis est vitae aliquam. Nam blandit mauris lacus, sed ultrices massa ornare eget. Etiam turpis dolor, semper quis eleifend at, mattis vitae erat. Pellentesque elit libero, consequat et tortor in, sodales sollicitudin metus. Vestibulum non sapien sit amet dui euismod semper sed vel turpis. In posuere tincidunt consectetur. Vestibulum eu quam nec tellus auctor finibus eu quis tellus. Mauris lacinia accumsan suscipit. Nullam id lacinia mi. Quisque egestas turpis a ligula pretium, nec consequat nunc interdum.
+					</p>
+				</div>
+			
+			</div>
+			
+		<h3 id="jquery_map_button">Zobrazit mapu:</h3>
+		<h2 id="floath2">Kde nás najdete</h2>
+		<img id="hideimg" alt="mapa" src="images/alps.jpg" >
+		<p id="floatp">
+		Etiam consequat vitae tortor eget ullamcorper. Nunc bibendum eleifend nunc non aliquam. Cras quam est, tempor non luctus sit amet, bibendum sed orci. Nullam et pellentesque metus. Cras in lectus vitae justo consequat convallis. Pellentesque at ante ut nulla aliquet consequat ultricies vel libero. Etiam consequat vitae tortor eget ullamcorper. Nunc bibendum eleifend nunc non aliquam. Cras quam est, tempor non luctus sit amet, bibendum sed orci. Nullam et pellentesque metus. Cras in lectus vitae justo consequat convallis. Pellentesque at ante ut nulla aliquet consequat ultricies vel libero. Pellentesque consectetur massa id dapibus dapibus. Pellentesque consectetur massa id dapibus dapibus.
+		</p>
+	
+	</div>
+
+	
+</section>
+</div>	
+
+<footer id="footer">
+		
+		<div id="map">
+			<a href="seo.html">SEO</a>
+			<a href="mapastranek.html">Mapa stránek</a>
+		</div>
+		<div id="copy">Copyright © 2016 - Ski areál Prudký Svah. All rights reserved.</div>
+
+</footer>
+</div>
+
+</body>
+</html>
